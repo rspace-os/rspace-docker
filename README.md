@@ -28,7 +28,11 @@ All 3 containers are kept within their own docker network. The only exposed port
 
 ## Access to RSpace
 
-RSpace will be reachable on port 8080 on localhost. You can setup a reverse proxy (only apache2 is compatible) to access RSpace over a TLD and setup SSL. Have a look in the Extras folder in this repo for docs on how to setup apache2 to work with RSpace
+RSpace will be reachable on port 8080 on localhost. You can setup a reverse proxy (only apache2 is compatible) to access RSpace over a TLD and setup SSL. Have a look in the Extras folder in this repo for docs on how to setup apache2 to work with RSpace.
+
+**Highly recommended for production releases to configure a apache2 and to access RSpace only over HTTPS via apache2**
+
+localhost:8080 is fine for development purposes or if you're only running RSpace locally for a test drive.
 
 ## Installing RSpace on Docker
 
