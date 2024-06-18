@@ -101,7 +101,7 @@ Then exit from the container. You can now start the RSpace container on your hos
 docker-compose start rspace-app
 ```
 
-You should see RSpace come up via the RSpace Web container. You can login using the default RSpace password for the user sysadmin1, however some features will not work (such as the creation of barcodes and temp files) until you create a temp and some extra directories for tomcat inside the rspace-app container. 
+**You MUST now create the following folders below. Without these folders being created, RSpace will FAIL TO START UP. Create the folders, then restart the container like shown below.**
 
 To do so, bash into the rspace-app container and run the following command:
 
