@@ -98,7 +98,6 @@
 -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
-    <!-- You can use this as a backup method to proxy RSpace with Apache2 using the AJP proxy pass. Use at your own risk as this technology is much older and a bit slower than HTTP/2-->
     <!--
     <Connector protocol="AJP/1.3"
 	     secretRequired="false"
