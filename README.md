@@ -136,6 +136,7 @@ docker-compose start rspace-app
 
 you must start / stop them in this order. You should now be able to access RSpace by navigating to your URL / hostname 🕺
 
+**⚠️ You MUST change the default sysadmin1 password now ⚠️**
 
 ## Using RSpace after the first time setup
 
