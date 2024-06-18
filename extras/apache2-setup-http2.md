@@ -20,27 +20,24 @@ You will need to enable the following modules on apache: ssl, proxy, mod_ip.
 
 Here is an example apache config, use this as a starting point:
 
+
+```
 <VirtualHost *:443>
-        ServerName domain.example.com
-        Protocols h2 http/1.1
-        ProxyRequests Off
-        ProxyPreserveHost On
-        Header always set Strict-Transport-Security "max-age=600;"
-        Header edit Set-Cookie ^(.*)$ $1;SameSite=None
-
-        # If you're using HTTP/2
-        SSLProxyEngine on
-        RemoteIPHeader X-Forwarded-For
-        ProxyPass / h2://rspace-app:8443/
-        ProxyPassReverse / https://rspace-app:8443/
-
-
-
-	      SSLCertificateFile /file-path
-	      SSLCertificateKeyFile /file-path
-
+	ServerName domain.example.com
+	Protocols h2 http/1.1
+	ProxyRequests Off
+	ProxyPreserveHost On
+	Header always set Strict-Transport-Security "max-age=600;"
+	Header edit Set-Cookie ^(.*)$ $1;SameSite=None
+	# If you're using HTTP/2
+	SSLProxyEngine on
+	RemoteIPHeader X-Forwarded-For
+	ProxyPass / h2://rspace-app:8443/
+	ProxyPassReverse / https://rspace-app:8443/
+	SSLCertificateFile /file-path
+	SSLCertificateKeyFile /file-path
 </VirtualHost>
-
+```
 
 This is just an example config, please ensure you know what you are doing before you expose a server to the internet.
 
