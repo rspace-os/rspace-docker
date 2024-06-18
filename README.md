@@ -139,7 +139,7 @@ The steps above are only needed for the first time setup, after that you can sta
 
 - docker-compose start / stop rspace-app
 - docker-compose start / stop rspace-db
-- 
+
 
 **You MUST start the database container BEFORE the RSpace container. You MUST stop the RSpace container before the database container.**
 
