@@ -1,0 +1,49 @@
+version: '3.3'
+services:
+    rspace-app:
+      restart: always
+      image: 'tomcat:9-jre17'
+      volumes:
+        - type: bind
+          source: /Users/ramon/docker-new/rspace.war
+          target: /usr/local/tomcat/webapps/ROOT.war
+        - type: bind
+          source: /Users/ramon/docker-new/deployment.properties
+          target: /etc/rspace/deployment.properties
+        - type: bind
+          source: /Users/ramon/docker-new/configs/rspace.env
+          target: /usr/local/tomcat/bin/setenv.sh
+        - type: bind
+          source: /Users/ramon/docker-new/configs/tomcat-locate.sh
+          target: /usr/libexec/tomcat9/tomcat-locate-java.sh
+        - type: bind
+          source: /Users/ramon/docker-new/configs/server.xml
+          target: /usr/local/tomcat/conf/server.xml
+        - type: volume
+          source: rspace-media
+          target: /media/rspace
+      ports:
+        - '8080:8080'
+    rspace-db:
+      image: 'mariadb:lts-jammy'
+      restart: always
+      volumes:
+        - type: volume
+          source: rspace-db
+          target: /var/lib/mysql
+        - type: bind
+          source: /Users/ramon/docker-new/configs/db-config.cnf
+          target: /etc/alternatives/my.cnf
+        - type: bind
+          source: /Users/ramon/docker-new/templates/db-template.sql
+          target: /import.sql
+      environment:
+          MARIADB_ROOT_PASSWORD: rspacedocker
+          MARIADB_DATABASE: rspace
+          MARIADB_USER: rspacedocker
+          MARIADB_PASSWORD: rspacedocker
+      command: mariadbd --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+
+volumes:
+  rspace-media:
+  rspace-db:
