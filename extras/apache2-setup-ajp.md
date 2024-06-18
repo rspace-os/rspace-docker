@@ -14,7 +14,7 @@ You'll need to do the following.
 You will need to enable the following modules on apache: ssl, proxy, mod_ip.
 
 Here is an example apache config, use this as a starting point:
-
+```
 <VirtualHost *:443>
         ServerName domain.example.com
         Protocols h2 http/1.1
@@ -34,7 +34,7 @@ Here is an example apache config, use this as a starting point:
 	      SSLCertificateKeyFile /file-path
 
 </VirtualHost>
-
+```
 This is just an example config, please ensure you know what you are doing before you expose a server to the internet.
 
 If you're having errors in RSpace, please try and replicate the error vistiing RSpace on localhost:8080 before opening a GitHub issues ticket, this will help us know if the error is being caused by RSpace, or by your reverse proxy.
