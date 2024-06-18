@@ -57,7 +57,7 @@ Your file structure inside your rspace-docker folder should look like this:
 | **Inside your configs folder**       |                                                  |                                                                                          |
 | db-config.cnf                        | MariaDB config file                              | No                                                                                       |
 | rspace.env                           | Tomcat properties for RSpace                     | Yes, edit your min/max amount of RAM allowed. Edit the JMelody username and password     |
-| server.xml                           | Tomcat config file                               | Only for debugging purposes                                                              |
+| server.xml                           | Tomcat config file                               | Only for debugging purposes or if you want to setup a new listener                       |
 | tomcat-locate.sh                     | Tomcat Java config file                          | No                                                                                       |
 | **Inside your templates folder**     |                                                  |                                                                                          |
 | db-template.sql                      | DB Template to be imported before first start up | No                                                                                       |
