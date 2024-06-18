@@ -30,8 +30,8 @@ Here is an example apache config, use this as a starting point:
         ProxyPassReverse / ajp://rspace-app:8009/
 
 
-	      SSLCertificateFile /file-path
-	      SSLCertificateKeyFile /file-path
+	SSLCertificateFile /file-path
+	SSLCertificateKeyFile /file-path
 
 </VirtualHost>
 ```
