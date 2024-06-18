@@ -24,7 +24,7 @@ RSpace DB Container
   
 ## Docker Networking & Security
 
-All 3 containers are kept within their own docker network. The only exposed ports are port 8080. Containers are referred to by their docker name and not their IP address, this is because docker as built in translation for IP addresses to docker container names.
+Containers are kept within their own docker network. The only exposed ports are port 8080. Containers are referred to by their docker name and not their IP address, this is because docker as built in translation for IP addresses to docker container names.
 
 ## Access to RSpace
 
