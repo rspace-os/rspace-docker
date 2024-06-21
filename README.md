@@ -165,7 +165,7 @@ If you need to update RSpace, stop the containers, replace the WAR file with one
 
 ## RSpace Backups & Restores
 
-The RSpace media folder and database folder are kept in the docker volumes, this means that if you shut the docker containers down. You need to backup these volumes as they keep your data.
+The RSpace media folder and database folder are kept in the docker volumes. You need to backup these volumes as they keep your data.
 
 You should keep backups of your "rspace-docker" folder.
 
