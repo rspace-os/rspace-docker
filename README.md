@@ -1,8 +1,6 @@
 # RSpace On Docker
 ![Current RSpace Version](https://img.shields.io/badge/Current_RSpace_Version-2.00-2ea44f)
 
-⚠️ You will need to wait until the RSpace WAR file is published before you're able to run this project. When published, this warning will be removed, and a link will be added under the "Installing RSpace on Docker" section of this document ⚠️
-
 ## System Requirements
 - A machine with at least 4GB of RAM and a dual core CPU (more is better) - See performance metrics at the end of this guide
 - Docker and docker-compose installed on the machine
@@ -44,7 +42,7 @@ This guide goes over setting up RSpace on Docker using a Linux host machine, if 
 
 **YOU WILL HAVE TO CHANGE THE VOLUME "bind" FILE PATHS IN THE DOCKER-COMPOSE.YAML FILE TO MATCH YOUR HOST / OWN PATHS**.
 
-ℹ️ Get the RSpace WAR file from GitHub releases - Link here  ℹ️
+ℹ️ Get the RSpace WAR file from GitHub releases - https://github.com/rspace-os/rspace-web/releases  ℹ️
 
 Your file structure inside your rspace-docker folder should look like this:
 
