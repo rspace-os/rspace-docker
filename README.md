@@ -1,5 +1,5 @@
 # RSpace On Docker
-![Current RSpace Version](https://img.shields.io/badge/Current_RSpace_Version-1.99.2-2ea44f)
+![Current RSpace Version](https://img.shields.io/badge/Current_RSpace_Version-2.00-2ea44f)
 
 ⚠️ You will need to wait until the RSpace WAR file is published before you're able to run this project. When published, this warning will be removed, and a link will be added under the "Installing RSpace on Docker" section of this document ⚠️
 
