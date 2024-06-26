@@ -42,7 +42,7 @@ You must already have docker and docker-compose installed.
 
 This guide goes over setting up RSpace on Docker using a Linux host machine, if you're running Docker on Windows, then you will need to edit your config files.
 
-**YOU WILL HAVE TO CHANGE THE "VOLUME" FILE PATHS IN THE DOCKER-COMPOSE.YAML FILE TO MATCH YOUR HOST / OWN PATHS**.
+**YOU WILL HAVE TO CHANGE THE VOLUME "bind" FILE PATHS IN THE DOCKER-COMPOSE.YAML FILE TO MATCH YOUR HOST / OWN PATHS**.
 
 ℹ️ Get the RSpace WAR file from GitHub releases - Link here  ℹ️
 
