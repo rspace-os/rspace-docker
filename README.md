@@ -121,6 +121,7 @@ mkdir /media/rspace/archive
 mkdir /media/rspace/backup
 mkdir /media/rspace/download
 mkdir /media/rspace/indices
+cd /media/rspace/ && ls -l
 exit
 ```
 
