@@ -139,6 +139,8 @@ docker-compose start rspace-app
 
 you must start / stop them in this order. You should now be able to access RSpace by navigating to your URL / hostname 🕺
 
+You can login with the username 'sysadmin1' and the password ![image](https://github.com/rspace-os/rspace-docker/assets/108399191/45cd4296-13e5-4649-90fc-eb286bcc0c0c)
+
 **⚠️ You MUST change the default sysadmin1 password now ⚠️**
 
 ## Using RSpace after the first time setup
