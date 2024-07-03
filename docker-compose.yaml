@@ -6,19 +6,19 @@ services:
       container_name: rspace-app
       volumes:
         - type: bind
-          source: rspace.war
+          source: ./rspace.war
           target: /usr/local/tomcat/webapps/ROOT.war
         - type: bind
-          source: deployment.properties
+          source: ./deployment.properties
           target: /etc/rspace/deployment.properties
         - type: bind
-          source: configs/rspace.env
+          source: ./configs/rspace.env
           target: /usr/local/tomcat/bin/setenv.sh
         - type: bind
-          source: configs/tomcat-locate.sh
+          source: ./configs/tomcat-locate.sh
           target: /usr/libexec/tomcat9/tomcat-locate-java.sh
         - type: bind
-          source: configs/server.xml
+          source: ./configs/server.xml
           target: /usr/local/tomcat/conf/server.xml
         - type: volume
           source: rspace-media
@@ -34,10 +34,10 @@ services:
           source: rspace-db
           target: /var/lib/mysql
         - type: bind
-          source: configs/db-config.cnf
+          source: ./configs/db-config.cnf
           target: /etc/alternatives/my.cnf
         - type: bind
-          source: templates/db-template.sql
+          source: ./templates/db-template.sql
           target: /import.sql
       environment:
           MARIADB_ROOT_PASSWORD: rspacedocker
