@@ -5,19 +5,19 @@ services:
       image: 'tomcat:9-jre17'
       volumes:
         - type: bind
-          source: /Users/ramon/docker-new/rspace.war
+          source: rspace.war
           target: /usr/local/tomcat/webapps/ROOT.war
         - type: bind
-          source: /Users/ramon/docker-new/deployment.properties
+          source: deployment.properties
           target: /etc/rspace/deployment.properties
         - type: bind
-          source: /Users/ramon/docker-new/configs/rspace.env
+          source: configs/rspace.env
           target: /usr/local/tomcat/bin/setenv.sh
         - type: bind
-          source: /Users/ramon/docker-new/configs/tomcat-locate.sh
+          source: configs/tomcat-locate.sh
           target: /usr/libexec/tomcat9/tomcat-locate-java.sh
         - type: bind
-          source: /Users/ramon/docker-new/configs/server.xml
+          source: configs/server.xml
           target: /usr/local/tomcat/conf/server.xml
         - type: volume
           source: rspace-media
@@ -32,10 +32,10 @@ services:
           source: rspace-db
           target: /var/lib/mysql
         - type: bind
-          source: /Users/ramon/docker-new/configs/db-config.cnf
+          source: configs/db-config.cnf
           target: /etc/alternatives/my.cnf
         - type: bind
-          source: /Users/ramon/docker-new/templates/db-template.sql
+          source: templates/db-template.sql
           target: /import.sql
       environment:
           MARIADB_ROOT_PASSWORD: rspacedocker
