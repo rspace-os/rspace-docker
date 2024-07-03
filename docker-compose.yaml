@@ -3,6 +3,7 @@ services:
     rspace-app:
       restart: always
       image: 'tomcat:9-jre17'
+      container_name: rspace-app
       volumes:
         - type: bind
           source: rspace.war
@@ -27,6 +28,7 @@ services:
     rspace-db:
       image: 'mariadb:lts-jammy'
       restart: always
+      container_name: rspace-db
       volumes:
         - type: volume
           source: rspace-db
