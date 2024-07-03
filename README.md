@@ -92,7 +92,7 @@ docker-compose start rspace-db
 You'll want to get a bash shell inside the database container (your container name might be different so double check using docker container ps), so that you can import the SQL file, run:
 
 ```
-docker exec -it rspace-docker_rspace-db_1 bash
+docker exec -it rspace-db bash
 ```
 
 And once you're in the bash shell, run the following command (you can find the default sql password in the docker-compose file)
@@ -112,7 +112,7 @@ docker-compose start rspace-app
 To do so, bash into the rspace-app container and run the following command:
 
 ```
-docker exec -it rspace-docker_rspace-app_1 bash
+docker exec -it rspace-app bash
 mkdir /media/rspace/tomcat-tmp
 mkdir /media/rspace/archives
 mkdir /media/rspace/archive
@@ -177,11 +177,11 @@ You should keep backups of your "rspace-docker" folder.
 You can backup your database using the commands below (you can put these in a bash script and run them via cron for automatic backups too!)
 
 ```
-docker exec -it rspace-docker_rspace-db_1 bash
+docker exec -it rspace-db bash
 mariadb-dump -u rspacedocker -p yourpassword DBNAME > backup.sql
 ```
 
-^ Then you can copy your SQL file back to your host
+^ Then you can copy your SQL file back to your host using docker cp 
 
 
 Additionally, RSpace has it's own Export / Import process which can be used for backing up data - https://documentation.researchspace.com/article/25mt56kamf-export-options
