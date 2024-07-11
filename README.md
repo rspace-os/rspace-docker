@@ -119,6 +119,9 @@ mkdir /media/rspace/archive
 mkdir /media/rspace/backup
 mkdir /media/rspace/download
 mkdir /media/rspace/indices
+mkdir /media/rspace/file_store
+mkdir /media/rspace/logs-audit
+mkdir /media/rspace/jmelody
 cd /media/rspace/ && ls -l
 exit
 ```
