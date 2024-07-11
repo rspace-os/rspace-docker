@@ -113,15 +113,17 @@ To do so, bash into the rspace-app container and run the following command:
 
 ```
 docker exec -it rspace-app bash
-mkdir /media/rspace/tomcat-tmp
-mkdir /media/rspace/archives
 mkdir /media/rspace/archive
+mkdir /media/rspace/archives
 mkdir /media/rspace/backup
 mkdir /media/rspace/download
-mkdir /media/rspace/indices
 mkdir /media/rspace/file_store
-mkdir /media/rspace/logs-audit
+mkdir /media/rspace/FTsearchIndices
+mkdir /media/rspace/indices
 mkdir /media/rspace/jmelody
+mkdir /media/rspace/logs-audit
+mkdir /media/rspace/LuceneFTsearchIndices
+mkdir /media/rspace/tomcat-tmp
 cd /media/rspace/ && ls -l
 exit
 ```
