@@ -79,14 +79,14 @@ Your file structure inside your rspace-docker folder should look like this:
 Next, create the containers, but do not start them:
 
 ```
-docker-compose up --no-start
+docker compose up --no-start
 ```
 ## Setting up the RSpace DB Containers
 
 Then only start your database container:
 
 ```
-docker-compose start rspace-db
+docker compose start rspace-db
 ```
 
 You'll want to get a bash shell inside the database container (your container name might be different so double check using docker container ps), so that you can import the SQL file, run:
@@ -104,7 +104,7 @@ mariadb -u root -p rspace < import.sql
 Then exit from the container. You can now start the RSpace container on your host, to do so run:
 
 ```
-docker-compose start rspace-app
+docker compose start rspace-app
 ```
 
 **You MUST now create the following folders below. Without these folders being created, RSpace will FAIL TO START UP. Create the folders, then restart the container like shown below.**
@@ -131,15 +131,15 @@ exit
 Now stop both your containers (stopping the app first):
 
 ```
-docker-compose stop rspace-app
-docker-compose stop rspace-db
+docker compose stop rspace-app
+docker compose stop rspace-db
 ```
 
 and then start the containers again:
 
 ```
-docker-compose start rspace-db
-docker-compose start rspace-app
+docker compose start rspace-db
+docker compose start rspace-app
 ```
 
 you must start / stop them in this order. You should now be able to access RSpace by navigating to your URL / hostname 🕺
@@ -152,8 +152,8 @@ You can login with the username 'sysadmin1' and the password ![image](https://gi
 
 The steps above are only needed for the first time setup, after that you can start and stop the RSpace containers like this:
 
-- docker-compose start / stop rspace-app
-- docker-compose start / stop rspace-db
+- docker compose start / stop rspace-app
+- docker compose start / stop rspace-db
 
 
 **You MUST start the database container BEFORE the RSpace container. You MUST stop the RSpace container before the database container.**
