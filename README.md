@@ -76,6 +76,8 @@ Your file structure inside your rspace-docker folder should look like this:
 
 **If you make any changes to the docker config (such as editing any of the config files), you may need to do a docker-compose up, as docker-compose start sometimes doesn't pick up new changes**
 
+**ℹ️ This guide follows the latest Docker compose commands and standards. If you're running a older distro (like Ubuntu 22.04 <), then you will need to use docker-compose and NOT docker compose. If you're using the latest version of Docker or a newer distro (Ubuntu 24.04, etc.) then docker compose should work fine for you. ℹ️**
+
 Next, create the containers, but do not start them:
 
 ```
