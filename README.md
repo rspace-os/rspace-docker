@@ -1,6 +1,4 @@
 # RSpace On Docker
-![Current RSpace Version](https://img.shields.io/badge/Current_RSpace_Version-2.00-2ea44f)
-
 ## System Requirements
 - A machine with at least 4GB of RAM and a dual core CPU (more is better) - See performance metrics at the end of this guide
 - Docker and docker-compose installed on the machine
