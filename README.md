@@ -84,6 +84,8 @@ Once you have edited any config files (such as changing default passwords, setti
 docker compose up -d
 ```
 
+First startup may take longer than usual, this is because RSpace is importing a SQL template into the database, and then creating the media paths before it is started up. Subsequent startups should be quicker.
+
 You should now be able to access RSpace by navigating to your URL / hostname 🕺
 
 
