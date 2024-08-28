@@ -76,92 +76,29 @@ Your file structure inside your rspace-docker folder should look like this:
 
 **ℹ️ This guide follows the latest Docker compose commands and standards. If you're running a older distro (like Ubuntu 22.04 <), then you will need to use docker-compose and NOT docker compose. If you're using the latest version of Docker or a newer distro (Ubuntu 24.04, etc.) then docker compose should work fine for you. ℹ️**
 
-Next, create the containers, but do not start them:
+***The steps below have recently been updated to facilitate a more automated deployment. If you still wish to read the manual steps, then please visit the archive/manual-steps branch of this repo*** 
+
+Once you have edited any config files (such as changing default passwords, setting up hostnames, etc..) and you've downloaded the RSpace WAR file from the rspace-os repo and placed it into your rspace-docker folder following the naming pattern shown in the table above. You can start up the containers with
 
 ```
-docker compose up --no-start
-```
-## Setting up the RSpace DB Containers
-
-Then only start your database container:
-
-```
-docker compose start rspace-db
+docker compose up -d
 ```
 
-You'll want to get a bash shell inside the database container (your container name might be different so double check using docker container ps), so that you can import the SQL file, run:
+You should now be able to access RSpace by navigating to your URL / hostname 🕺
 
-```
-docker exec -it rspace-db bash
-```
-
-And once you're in the bash shell, run the following command (you can find the default sql password in the docker-compose file)
-
-```
-mariadb -u root -p rspace < import.sql
-```
-
-Then exit from the container. You can now start the RSpace container on your host, to do so run:
-
-```
-docker compose start rspace-app
-```
-
-**You MUST now create the following folders below. Without these folders being created, RSpace will FAIL TO START UP. Create the folders, then restart the container like shown below.**
-
-To do so, bash into the rspace-app container and run the following command:
-
-```
-docker exec -it rspace-app bash
-mkdir /media/rspace/archive
-mkdir /media/rspace/archives
-mkdir /media/rspace/backup
-mkdir /media/rspace/download
-mkdir /media/rspace/file_store
-mkdir /media/rspace/FTsearchIndices
-mkdir /media/rspace/indices
-mkdir /media/rspace/jmelody
-mkdir /media/rspace/logs-audit
-mkdir /media/rspace/LuceneFTsearchIndices
-mkdir /media/rspace/tomcat-tmp
-cd /media/rspace/ && ls -l
-exit
-```
-
-Now stop both your containers (stopping the app first):
-
-```
-docker compose stop rspace-app
-docker compose stop rspace-db
-```
-
-and then start the containers again:
-
-```
-docker compose start rspace-db
-docker compose start rspace-app
-```
-
-you must start / stop them in this order. You should now be able to access RSpace by navigating to your URL / hostname 🕺
 
 You can login with the username 'sysadmin1' and the password ![image](https://github.com/rspace-os/rspace-docker/assets/108399191/45cd4296-13e5-4649-90fc-eb286bcc0c0c)
+
 
 **⚠️ You MUST change the default sysadmin1 password now ⚠️**
 
 ## Using RSpace after the first time setup
 
-The steps above are only needed for the first time setup, after that you can start and stop the RSpace containers like this:
+You can start and stop the containers using docker compose stop / down / start / up -d
 
-- docker compose start / stop rspace-app
-- docker compose start / stop rspace-db
+Docker will automatically startup the database container first, and then the RSpace app container.
 
-
-**You MUST start the database container BEFORE the RSpace container. You MUST stop the RSpace container before the database container.**
-
-
-I recommend that you create a simple bash startup and shutdown script that has the docker-compose commands in the correct order, so that stopping and starting all the services in the correct order is easier.
-
-*If you make any changes to the docker config, you may need to do a docker-compose up, as docker-compose start sometimes doesn't pick up new changes*
+*If you make any changes to the docker config, you may need to do a docker-compose up, as docker-compose start sometimes doesn't pick up new changes.*
 
 ## Updating RSpace
 If you need to update RSpace, stop the containers, replace the WAR file with one for a newer version of RSpace and then start the containers back up. We recommend you create a mariadb-dump (see commands below) of the database right before you update RSpace incase you need to revert back.
@@ -171,7 +108,8 @@ If you need to update RSpace, stop the containers, replace the WAR file with one
 - The mariadb container will fetch the latest LTS version.
 - You do not need to update the apache2 container, as it will always fetch the latest version.
   
-*These updates only apply if you do a docker-compose stop and then docker-compose up -d, as docker-compose start does not check for container updates*
+
+If you want to update the base docker images, you should run: docker-compose pull  && docker-compose up -d
 
 ## RSpace Backups & Restores
 
@@ -188,9 +126,9 @@ mariadb-dump -u rspacedocker -p yourpassword DBNAME > backup.sql
 
 ^ Then you can copy your SQL file back to your host using docker cp 
 
+You can backup your RSpace FileStore by backing up everything in /media/rspace, which is kept in the rspace-media volume
 
 Additionally, RSpace has it's own Export / Import process which can be used for backing up data - https://documentation.researchspace.com/article/25mt56kamf-export-options
-
 
 
 ## Completely deleting your RSpace containers and data.
