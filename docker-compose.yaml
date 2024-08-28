@@ -24,6 +24,30 @@ services:
           target: /media/rspace
       ports:
         - '8080:8080'
+      depends_on:
+        prep-dirs:
+          condition: service_completed_successfully
+        rspace-db:
+          condition: service_healthy
+    prep-dirs:
+      image: 'ubuntu:24.04'
+      volumes:
+        - type: volume
+          source: rspace-media
+          target: /media/rspace
+      command: >
+        mkdir -pv
+          /media/rspace/archive
+          /media/rspace/archives
+          /media/rspace/backup
+          /media/rspace/download
+          /media/rspace/file_store
+          /media/rspace/FTsearchIndices
+          /media/rspace/indices
+          /media/rspace/jmelody
+          /media/rspace/logs-audit
+          /media/rspace/LuceneFTsearchIndices
+          /media/rspace/tomcat-tmp
     rspace-db:
       image: 'mariadb:lts-jammy'
       restart: always
@@ -37,13 +61,19 @@ services:
           target: /etc/alternatives/my.cnf
         - type: bind
           source: ./templates/db-template.sql
-          target: /import.sql
+          target: /docker-entrypoint-initdb.d/import.sql
       environment:
           MARIADB_ROOT_PASSWORD: rspacedocker
           MARIADB_DATABASE: rspace
           MARIADB_USER: rspacedocker
           MARIADB_PASSWORD: rspacedocker
       command: mariadbd --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+      healthcheck:
+        test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+        start_period: 10s
+        interval: 10s
+        timeout: 5s
+        retries: 3
 
 volumes:
   rspace-media:
