@@ -25,12 +25,12 @@ services:
       ports:
         - '8080:8080'
       depends_on:
-        prep-dirs:
+        prep-container:
           condition: service_completed_successfully
         rspace-db:
           condition: service_healthy
-    prep-dirs:
-      image: 'ubuntu:24.04'
+    prep-container:
+      image: 'alpine:latest'
       volumes:
         - type: volume
           source: rspace-media
