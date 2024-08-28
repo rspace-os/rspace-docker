@@ -111,7 +111,10 @@ If you need to update RSpace, stop the containers, replace the WAR file with one
 - You do not need to update the apache2 container, as it will always fetch the latest version.
   
 
-If you want to update the base docker images, you should run: docker-compose pull  && docker-compose up -d
+If you want to update the base docker images, you should run: 
+```
+docker-compose pull  && docker-compose up -d
+```
 
 ## RSpace Backups & Restores
 
