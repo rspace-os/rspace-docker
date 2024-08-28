@@ -31,6 +31,7 @@ services:
           condition: service_healthy
     prep-container:
       image: 'alpine:latest'
+      container_name: rspace-prep-container
       volumes:
         - type: volume
           source: rspace-media
