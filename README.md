@@ -67,7 +67,7 @@ Your file structure inside your rspace-docker folder should look like this:
 | db-template.sql                      | DB Template to be imported before first start up | No                                                                                       |
 | **Inside your rspace-docker folder** |                                                  |                                                                                          |
 | deployment.properties                | RSpace config file                               | Yes, edit hostname, db username/pass, and any RSpace integrations you wish to setup      |
-| docker-compose.yaml                  | Main docker config file                          | Yes, edit so paths to files match up with your host. Edit DB username/password           |
+| docker-compose.yaml                  | Main docker config file                          | Yes, edit paths to files match up with your host. Edit DB username/password           |
 | rspace.war                           | RSpace Java EXE file                             | Yes, update with new WAR from RSpace repo releases page to update your version of RSpace |
 
 **If you're running on Docker on Linux, you may need to add sudo infront of the commands, as default Docker on Linux does not come in sudo-less mode. This is not an issue on Docker for Desktop. Also, we haven't seen this on desktop versions of Docker yet, but in new distro releases (Eg. Ubuntu 24.04 LTS) docker-compose has been replaced with docker compose, so you may need to adjust your commands**
