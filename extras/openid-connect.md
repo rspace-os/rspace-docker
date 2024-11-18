@@ -55,6 +55,13 @@ You can also comment the http connector on port 8080 since we won't be using tha
 
 In your apache2.conf file, you will set up your IdP details. You can find more information on IdP details here - https://github.com/OpenIDC/mod_auth_openidc
 
+You will also need to add the following SSO values in your RSpace deployment.properties file:
+```
+deployment.standalone=false
+deployment.sso.type=openid
+user.signup=true
+```
+
 There is also a apache.setup file at the bottom of this guide. As the rspace-web-sso container does not keep a persistent state, setup happens each time the container is started up. This script performs the setup process. At the end of the file, it tails /dev/null - This is because without this the container will automatically stop after startup, but this tail keeps it alive.
 
 The timezone also needs to be set correctly, to ensure session timers are correct.
@@ -62,11 +69,56 @@ The timezone also needs to be set correctly, to ensure session timers are correc
 ## RSpace claims <---> OpenID Claims
 In order for RSpace to correctly understand what OpenID claims match with email, username, firstName and lastName, we need to match the OpenID claims to RSpace claims.
 
-TBC
+The OpenID Claims used vary depending on which IdP you use. You will need to know the names of the claims your IdP is sending to RSpace. You can see a standard list here - https://docs.vindicia.com/bundle/b_ConnectProductDescription/page/topics/OIDCStandardClaimsAndScopes_c.html
+
+Once you know the claim names sent from the IdP, you can map them to the correct RSpace claims. Below is a list of the claims you need to match between RSpace and the IdP
+
+```
+#### The claim for the RSpace username
+deployment.sso.openid.usernameClaim=
+
+#### Any additional claims for the RSpace username
+deployment.sso.openid.additionalUsernameClaim=
+
+#### The claim for the email address
+deployment.sso.openid.emailClaim=
+
+#### The claim for the firstname
+deployment.sso.openid.firstNameClaim=
+
+#### The claim for the lastname
+deployment.sso.openid.lastNameClaim=
+```
+
+For example, if I want my RSpace username to be the email claim passed on from the IdP, then I would set: _deployment.sso.openid.usernameClaim=OIDC_CLAIM_email_
+
+Remember that claims must follow the format: OIDC_CLAIM_$ClaimName
+
+You should notice that the claims are correctly passed to RSpace, and if you try to visit RSpace, you should see the RSpace sign up page with the sign up form pre-filled with the claims passed from the IdP.
 
 ## Logout Setup
 
-TBC
+Logout is setup on the RSpace side, in the RSpace deployment.properties, your logout URL should always point to
+
+```
+deployment.sso.logout.url=/openidAuthRedirect?logout=%2Fpublic%2Fssologout
+```
+
+This should be the openid auth endpoint specified in apache + ?logout. This endpoint kills the apache openid session. There is also a redirect to /public/ssologout - This is the logout page that is shown to the user. It is essential that it points to this page as urls under /public/ are not protected by SSO, and therefore, you will not be re-authenticated / logged in again.
+
+If your provider does not support single sign out, then you will be shown a message that states "You have logged out of RSpace, but are still logged into your SSO provider. Please logout of your SSO provider" . If you navigate back to the /workspace, then you will be re-logged in. This is because you have logged out of RSpace, but your SSO account is still logged in with your IdP (Okta, Microsoft, etc..)
+
+If your provider does support single sign out, then you can configure the addition property
+
+```
+deployment.sso.idp.logout.url=https://dev-07217600.okta.com/login/signout
+```
+
+This property changes the message on the logout page to add a hyperlink with the option "You have logged out of RSpace, but are still logged into your SSO provider. Please click here to logout of your SSO provider"
+
+_You can find the idp logout url by going to the openid metadata url, and then finding the logout url._
+
+**Remember: Everytime you make a change to the RSpace deployment.properties file, RSpace needs to be restarted for the changes to take effect.**
 
 ## Troubleshooting commands
 
