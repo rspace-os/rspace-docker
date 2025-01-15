@@ -8,7 +8,8 @@ LABEL maintainer=”ramon@researchspace.com”
 
 RUN mkdir /etc/rspace
 
-COPY rspace.war /usr/local/tomcat/webapps/ROOT.war
+ADD https://github.com/rspace-os/rspace-web/releases/download/2.5.0/researchspace-2.5.0.war /usr/local/tomcat/webapps/ROOT.war
+
 COPY deployment.properties /etc/rspace/deployment.properties
 COPY configs/rspace.env /usr/local/tomcat/bin/setenv.sh
 COPY configs/tomcat-locate.sh /usr/libexec/tomcat9/tomcat-locate-java.sh
