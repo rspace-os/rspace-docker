@@ -74,7 +74,23 @@ services:
         interval: 10s
         timeout: 5s
         retries: 3
-
+    chemistry:
+        ports:
+          - '127.0.0.1:8090:8090'
+        image: 'eclipse-temurin:21-jre-noble'
+        entrypoint: [ "bash", "-c", "apt-get update && apt-get install --yes --quiet --no-install-recommends openbabel && apt-get clean && java -jar /home/app/chemistry.jar"]
+        restart: unless-stopped
+        volumes:
+          - type: bind
+            source: ./chemistry.jar
+            target: /home/app/chemistry.jar
+          - type: volume
+            source: chemistry-files
+            target: /home/app
+        environment:
+          - OPENBABEL_HOME/bin:$PATH
+        working_dir: /home/app/chemistry
 volumes:
   rspace-media:
   rspace-db:
+  chemistry-files:
