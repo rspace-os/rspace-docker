@@ -74,12 +74,11 @@ services:
         interval: 10s
         timeout: 5s
         retries: 3
-    chemistry:
-        ports:
-          - '127.0.0.1:8090:8090'
+    rspace-chemistry:
         image: 'eclipse-temurin:21-jre-noble'
         entrypoint: [ "bash", "-c", "apt-get update && apt-get install --yes --quiet --no-install-recommends openbabel && apt-get clean && java -jar /home/app/chemistry.jar"]
         restart: unless-stopped
+        container_name: rspace-chemistry
         volumes:
           - type: bind
             source: ./chemistry.jar
