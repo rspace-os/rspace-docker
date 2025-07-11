@@ -78,7 +78,6 @@ services:
         image: 'eclipse-temurin:21-jre-noble'
         restart: always
         entrypoint: [ "bash", "-c", "apt-get update && apt-get install --yes --quiet --no-install-recommends openbabel && apt-get clean && java -jar /home/app/chemistry.jar"]
-        restart: unless-stopped
         container_name: rspace-chemistry
         volumes:
           - type: bind
