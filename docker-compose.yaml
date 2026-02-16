@@ -82,21 +82,12 @@ services:
         timeout: 5s
         retries: 3
     rspace-chemistry:
-        image: 'eclipse-temurin:21-jre-noble'
-        restart: always
-        entrypoint: [ "bash", "-c", "apt-get update && apt-get install --yes --quiet --no-install-recommends openbabel && apt-get clean && java -jar /home/app/chemistry.jar"]
-        container_name: rspace-chemistry
+        image: 'rspaceops/oss-chemistry:latest'
         volumes:
-          - type: bind
-            source: ./chemistry.jar
-            target: /home/app/chemistry.jar
-            read_only: true
-          - type: volume
-            source: chemistry-files
-            target: /home/app
-        environment:
-          - OPENBABEL_HOME/bin:$PATH
-        working_dir: /home/app/chemistry
+            - 'chemistry-files:/home/app'
+        container_name: rspace-chemistry-container
+        ports:
+            - '8090:8090'
 volumes:
   rspace-media:
   rspace-db:
