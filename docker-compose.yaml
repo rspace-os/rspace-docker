@@ -7,18 +7,23 @@ services:
         - type: bind
           source: ./rspace.war
           target: /usr/local/tomcat/webapps/ROOT.war
+          read_only: true
         - type: bind
           source: ./deployment.properties
           target: /etc/rspace/deployment.properties
+          read_only: true
         - type: bind
           source: ./configs/rspace.env
           target: /usr/local/tomcat/bin/setenv.sh
+          read_only: true
         - type: bind
           source: ./configs/tomcat-locate.sh
           target: /usr/libexec/tomcat9/tomcat-locate-java.sh
+          read_only: true
         - type: bind
           source: ./configs/server.xml
           target: /usr/local/tomcat/conf/server.xml
+          read_only: true
         - type: volume
           source: rspace-media
           target: /media/rspace
@@ -60,9 +65,11 @@ services:
         - type: bind
           source: ./configs/db-config.cnf
           target: /etc/alternatives/my.cnf
+          read_only: true
         - type: bind
           source: ./templates/db-template.sql
           target: /docker-entrypoint-initdb.d/import.sql
+          read_only: true
       environment:
           MARIADB_ROOT_PASSWORD: rspacedocker
           MARIADB_DATABASE: rspace
@@ -83,6 +90,7 @@ services:
           - type: bind
             source: ./chemistry.jar
             target: /home/app/chemistry.jar
+            read_only: true
           - type: volume
             source: chemistry-files
             target: /home/app
