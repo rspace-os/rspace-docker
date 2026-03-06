@@ -152,6 +152,20 @@ If you're running RSpace on a computer (such as a Laptop or Desktop), then reall
 
 If you do increase your RAM, make sure to edit the rspace.env file to edit the Tomcat ram limit to be higher - Tomcat won't automatically use all available RAM, you need to manually increase the maximum RAM it can use.
 
+For servers, these tables should be a rough guide on how many resources you should allocate
+
+| Number of Users | Recommended RAM (GB) | Recommended CPUs |
+| --------------- | -------------------- | ---------------- |
+| < 50            | 8      | 2–4              |
+| 50–250          | 16   | 4–8              |
+| 250–5000        | 32   | 8                |
+
+| Number of Users | Initial Storage Requirements | Storage Scaling  |
+| --------------- | ---------------------------- | ---------------- |
+| < 50            | 50 GB                        | 1 GB/person/year |
+| 50–250          | 250 GB                       | 1 GB/person/year |
+| 250–5000        | 250 GB – 1 TB                | 1 GB/person/year |
+
 ## Support & Issues
 
 Please use GitHub issues to submit any issues you may face.
