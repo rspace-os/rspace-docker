@@ -132,7 +132,7 @@ mariadb-dump -u rspacedocker -p yourpassword DBNAME > backup.sql
 
 ^ Then you can copy your SQL file back to your host using docker cp 
 
-You can backup your RSpace FileStore by backing up everything in /media/rspace, which is kept in the rspace-media volume
+You can backup your RSpace FileStore by backing up everything in /media/rspace, which is kept in the rspace-media volume. On linux this can be accessed at /var/lib/docker/volumes.
 
 Additionally, RSpace has it's own Export / Import process which can be used for backing up data - https://documentation.researchspace.com/article/25mt56kamf-export-options
 
