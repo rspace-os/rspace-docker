@@ -86,8 +86,6 @@ services:
         volumes:
             - 'chemistry-files:/home/app'
         container_name: rspace-chemistry-container
-        ports:
-            - '8090:8090'
 volumes:
   rspace-media:
   rspace-db:
