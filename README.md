@@ -103,6 +103,48 @@ Docker will automatically startup the database container first, and then the RSp
 
 *If you make any changes to the docker config, you may need to do a docker-compose up, as docker-compose start sometimes doesn't pick up new changes.*
 
+## Using RSpace with HTTPS
+If you want to use RSpace with https then you can follow the steps below. You must have trusted CA certs for this to work (from Let's Encrypt or a paid SSL cert) and a FQDN setup (point your FQDN to the RSpace container). This uses the HTTP2 connector in tomcat + your SSL cert:
+
+Add the certificates to your docker-compose.yaml file:
+
+```
+       - type: bind
+          source: ./certs/chain.pem
+          target: /etc/rspace/certs/chain.pem
+          read_only: true
+        - type: bind
+          source: ./certs/key.pem
+          target: /etc/rspace/certs/key.pem
+          read_only: true
+        - type: bind
+          source: ./certs/cert.pem
+          target: /etc/rspace/certs/cert.pem
+          read_only: true
+```
+
+Add port 443 to the docker-compose.yaml file for the rspace-app container. You'll also need to add the FQDN in the deployment.properties file (under the URL section).
+
+and then add the following to your server.xml file
+
+```
+<Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+           address="0.0.0.0" maxThreads="150" SSLEnabled="true">
+    <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+    <SSLHostConfig>
+        <Certificate certificateKeyFile="/etc/rspace/certs/key.pem"
+                     certificateFile="/etc/rspace/certs/cert.pem"
+                     certificateChainFile="/etc/rspace/certs/chain.pem"
+                     type="RSA" />
+    </SSLHostConfig>
+</Connector>
+
+```
+
+and then you can restart your rspace-app container. Navigate to RSpace using the FQDN and you'll see that the connection is over HTTPS + HTTP/2
+
+
+
 ## Updating RSpace
 If you need to update RSpace, stop the containers, replace the WAR file with one for a newer version of RSpace and then start the containers back up. We recommend you create a mariadb-dump (see commands below) of the database right before you update RSpace incase you need to revert back.
 
