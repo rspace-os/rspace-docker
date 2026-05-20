@@ -143,7 +143,7 @@ and then add the following to your server.xml file
 
 and then you can restart your rspace-app container. Navigate to RSpace using the FQDN and you'll see that the connection is over HTTPS + HTTP/2
 
-
+You can also pair RSpace with a reverse proxy, apache2 example configs are provided in the _extras_ folder.
 
 ## Updating RSpace
 If you need to update RSpace, stop the containers, replace the WAR file with one for a newer version of RSpace and then start the containers back up. We recommend you create a mariadb-dump (see commands below) of the database right before you update RSpace incase you need to revert back.
