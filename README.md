@@ -214,4 +214,4 @@ Please use GitHub issues to submit any issues you may face.
 
 If you have an issue with the Docker config, or RSpace is failing to startup, please use the Github issues for the rspace-docker repo
 
-If you have found a bug or have an issue with the RSpace software itself, please use the Github issues for the rspace-web repo
+If you have found a bug or have an issue with the RSpace software itself, please use the Github issues for the rspace-web repo.
