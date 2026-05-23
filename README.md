@@ -28,7 +28,7 @@ Containers are kept within their own docker network. The only exposed ports are 
 
 RSpace will be reachable on port 8080 on localhost. You can setup a reverse proxy (only apache2 is compatible) to access RSpace over a TLD and setup SSL. Have a look in the Extras folder in this repo for docs on how to setup apache2 to work with RSpace.
 
-**Highly recommended for production releases to configure apache2 and to access RSpace only over HTTPS via apache2**
+**Highly recommended for production releases to configure apache2 and to access RSpace only over HTTPS via apache2 ℹ️**
 
 localhost:8080 is fine for development purposes or if you're only running RSpace locally for a test drive.
 
@@ -143,7 +143,7 @@ and then add the following to your server.xml file
 
 and then you can restart your rspace-app container. Navigate to RSpace using the FQDN and you'll see that the connection is over HTTPS + HTTP/2
 
-You can also pair RSpace with a reverse proxy if you don't want to setup an additional tomcat server.xml connector like shown above, apache2 example configs are provided in the _extras_ folder.
+While exposing the HTTP2 connector is an option, We still recommend apache2 for production use, it can offer integration with tools like certbot and better overall security. apache2 example configs are provided in the _extras_ folder of this repo.
 
 ## Updating RSpace
 If you need to update RSpace, stop the containers, replace the WAR file with one for a newer version of RSpace and then start the containers back up. We recommend you create a mariadb-dump (see commands below) of the database right before you update RSpace incase you need to revert back.
