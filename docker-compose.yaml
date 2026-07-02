@@ -55,7 +55,7 @@ services:
           /media/rspace/LuceneFTsearchIndices
           /media/rspace/tomcat-tmp
     rspace-db:
-      image: 'mariadb:lts-jammy'
+      image: 'mariadb:10.11'
       restart: always
       container_name: rspace-db
       volumes:
