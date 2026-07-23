@@ -83,6 +83,7 @@ services:
         retries: 3
     rspace-chemistry:
         image: 'rspaceops/oss-chemistry:latest'
+        restart: always
         volumes:
             - 'chemistry-files:/home/app'
         container_name: rspace-chemistry-container
