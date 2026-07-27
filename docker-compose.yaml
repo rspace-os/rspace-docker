@@ -87,7 +87,19 @@ services:
         volumes:
             - 'chemistry-files:/home/app'
         container_name: rspace-chemistry-container
+    rspace-webdav-connector:
+        image: rspaceops/rspace-webdav-connector:latest
+        container_name: rspace-webdav-connector
+        restart: always
+        environment:
+          WEBDAV_VENDOR: nextcloud
+          NEXTCLOUD_SERVER_URL: https://YOUR-NEXTCLOUD.URL
+        volumes:
+          - rspace_wd_keys:/data/keys
+volumes:
+  rspace_wv_keys:
 volumes:
   rspace-media:
   rspace-db:
   chemistry-files:
+  rspace-wd-keys:
