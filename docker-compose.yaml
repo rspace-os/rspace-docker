@@ -95,9 +95,7 @@ services:
           WEBDAV_VENDOR: nextcloud
           NEXTCLOUD_SERVER_URL: https://YOUR-NEXTCLOUD.URL
         volumes:
-          - rspace_wd_keys:/data/keys
-volumes:
-  rspace_wv_keys:
+          - 'rspace_wd_keys:/data/keys'
 volumes:
   rspace-media:
   rspace-db:
