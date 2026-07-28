@@ -86,7 +86,7 @@ services:
         restart: always
         volumes:
             - 'chemistry-files:/home/app'
-        container_name: rspace-chemistry-container
+        container_name: rspace-chemistry
     rspace-webdav-connector:
         image: rspaceops/rspace-webdav-connector:latest
         container_name: rspace-webdav-connector
