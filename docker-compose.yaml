@@ -1,7 +1,7 @@
 services:
     rspace-app:
       restart: always
-      image: 'tomcat:9-jre17'
+      image: 'tomcat:10-jre17'
       container_name: rspace-app
       volumes:
         - type: bind
