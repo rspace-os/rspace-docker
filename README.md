@@ -14,7 +14,7 @@ The /media/rspace and /var/lib/mysql folders are mounted as docker volumes. This
 ## Container Structure
 
 RSpace App Container
-- Latest version of Tomcat 9 w/ OpenJDK 17
+- Latest version of Tomcat 10 w/ OpenJDK 17
 - RSpace (Whichever version your WAR file is)
   
 RSpace DB Container
