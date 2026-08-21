@@ -77,10 +77,10 @@ services:
           MARIADB_PASSWORD: rspacedocker
       healthcheck:
         test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-        start_period: 10s
+        start_period: 60s
         interval: 10s
         timeout: 5s
-        retries: 3
+        retries: 10
     rspace-chemistry:
         image: 'rspaceops/oss-chemistry:latest'
         restart: always
