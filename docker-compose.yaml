@@ -85,7 +85,7 @@ services:
         image: 'rspaceops/oss-chemistry:latest'
         restart: always
         volumes:
-            - 'chemistry-files:/home/app/chemistry/data'
+            - 'chemistry-files:/home/app'
         container_name: rspace-chemistry
     rspace-webdav-connector:
         image: rspaceops/rspace-webdav-connector:latest
