@@ -161,6 +161,8 @@ If you want to update the base docker images, you should run:
 docker-compose pull  && docker-compose up -d
 ```
 
+Please also check you're running the latest version of the docker-compose.yaml file.
+
 ## RSpace Backups & Restores
 
 The RSpace media folder and database folder are kept in the docker volumes. You need to backup these volumes as they keep your data.
