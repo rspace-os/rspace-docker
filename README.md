@@ -161,7 +161,7 @@ If you want to update the base docker images, you should run:
 docker-compose pull  && docker-compose up -d
 ```
 
-Please also check you're running the latest version of the docker-compose.yaml file.
+You need to also update the repo, we push changes to the docker-compose.yaml file and other config files often. These could result RSpace to break if not in sync.
 
 ## RSpace Backups & Restores
 
