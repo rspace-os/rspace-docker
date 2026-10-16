@@ -76,7 +76,7 @@ services:
           MARIADB_USER: rspacedocker
           MARIADB_PASSWORD: rspacedocker
       healthcheck:
-        test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+        test: ["CMD-SHELL", "mariadb -h 127.0.0.1 -u\"$$MARIADB_USER\" -p\"$$MARIADB_PASSWORD\" -e 'SELECT 1'"]
         start_period: 60s
         interval: 10s
         timeout: 5s
