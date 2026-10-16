@@ -55,13 +55,13 @@ services:
           /media/rspace/LuceneFTsearchIndices
           /media/rspace/tomcat-tmp
     rspace-db:
-      image: 'mariadb:10.11'
+      image: 'mariadb:11.8'
       restart: always
       container_name: rspace-db
       volumes:
         - type: volume
           source: rspace-db
-          target: /var/lib/mysql
+          target: /media/mysql
         - type: bind
           source: ./configs/db-config.cnf
           target: /etc/alternatives/my.cnf
